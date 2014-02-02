@@ -1,0 +1,21 @@
+<section id="videos">
+   <h1>Últimos Videos</h1>
+   <% @videos.videos.each do |video| %>
+      <article class="row">
+          <div class="img_video col-md-6">
+          	 <img src="<%= video.thumbnails[1].url %>" alt="">
+          </div>
+
+          <div class="info_video col-md-6">
+      	     <h1><%= video.title %></h1>
+      	     <ul>
+      	     	<li><strong>Duracion: </strong><%= (video.duration)/60  %> minutos</li>
+      	     	<li><strong>Reproducciones : </strong><%= (video.view_count).to_s.reverse.gsub(/...(?=.)/,'\&,').reverse  %></li>
+      	     	<li><strong>Likes :</strong><%= video.rating.likes %></li>
+      	     	<li><strong>Comentarios: </strong><%= video.comment_count %></li>
+      	     	<li><strong>Fecha: </strong><%= distance_of_time_in_words(video.published_at, Date.today) %> ago</li>
+      	     </ul>
+      	  </div>
+      </article>
+   <% end	%>
+</section>
